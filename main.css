@@ -10,6 +10,7 @@ html, body {
 }
 
 .contenedor__principal {
+	border: 2px solid red;
 	width: inherit;
 	height: inherit;
 	background-color: #888;
@@ -19,11 +20,14 @@ html, body {
 }
 
 .contenedor__2do {
+	border: 2px solid red;
 	/* width: 500px; */
 	/* height: 550px; */
     width: 90%;
     height: 90%;
 	max-width: 800px;
 	background-color: inherit;
-	display: block;
+	display: inherit;
+	align-items: inherit;
+	justify-content: inherit;
 }

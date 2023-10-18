@@ -4,8 +4,8 @@
 const constantes = {
     tileX: 20,
     tileY: 20,
-    columnas: 10,
-    filas: 25,
+    columnas: 14,
+    filas: 20,
     fps: 60,
     gravedad: 1,
     eventos: ['touchstart', 'click', 'keydown', 'keyup'],
@@ -20,19 +20,8 @@ const elementosDom = {
 }
 
 const marcadores = {
-    turno: false,
-    plantarse: false,
-    contadorGeneral: 0,
-    contadorJugador: 0,
-    contadorCPU: 0,
-    contadorOcultas: 0,
-    contadorManos: 0,
-    sumaJugador: 0,
-    sumaCPU: 0,
-    cuantosAsesJugador: 0,
-    cuantosAsesCPU: 0,
-    fichasJugador: constantes.fichasInicialesJugador,
-    fichasCPU: constantes.fichasInicialesCPU,
+    lineas: 0,
+    nivel: 1,
 }
 
 const estado = {
@@ -46,6 +35,10 @@ const varias = {
     bandera: false,
 }
 
+const colores = {
+    fondo_canvas: "rgb(73, 73, 73)",
+}
+
 const sonido = {
     gameOverVoz: new Audio('./sonidos/gameover.mp3'),
 }
@@ -57,6 +50,7 @@ export {
     marcadores,
     estado,
     sonido,
-    varias
+    varias,
+    colores
 };
 

@@ -8,6 +8,8 @@ import {
     estado
 } from "./constants.js";
 
+import { borraCanvas } from "./functions.js";
+
 let eventoSel;
 // ---------------------------------------------------------------------
 //  Eventos Raton, Touch, Key
@@ -39,7 +41,8 @@ window.onload = () => {
 
     elementosDom.canvas.width = constantes.columnas * constantes.tileX;
     elementosDom.canvas.height = constantes.filas * constantes.tileY;
-
+    elementosDom.canvas.style.border = '1px solid black';
+    borraCanvas();
 }
 
 // ---------------------------------------------------------------------
