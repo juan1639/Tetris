@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+html, body {
+	width: 100vw;
+	height: 100vh;
+}
+
+.contenedor__principal {
+	width: inherit;
+	height: inherit;
+	background-color: #888;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.contenedor__2do {
+	/* width: 500px; */
+	/* height: 550px; */
+    width: 90%;
+    height: 90%;
+	max-width: 800px;
+	background-color: inherit;
+	display: block;
+}
