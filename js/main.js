@@ -1,14 +1,18 @@
 // ---------------------------------------------------------------------
-//  T3TR1S ... By Juan Eguia
+//  Clon del juego T3TR1S ... By Juan Eguia
 // 
 // ---------------------------------------------------------------------
 import { 
     constantes, 
     elementosDom,
+    objeto,
     estado
 } from "./constants.js";
 
-import { borraCanvas } from "./functions.js";
+import { 
+    borraCanvas,
+    instanciar_pieza
+} from "./functions.js";
 
 let eventoSel;
 // ---------------------------------------------------------------------
@@ -37,12 +41,20 @@ window.onload = () => {
     console.log(eventoSel);
 
     elementosDom.ctx = elementosDom.canvas.getContext('2d');
-    let ctx = elementosDom.ctx;
+    // let ctx = elementosDom.ctx;
 
     elementosDom.canvas.width = constantes.columnas * constantes.tileX;
     elementosDom.canvas.height = constantes.filas * constantes.tileY;
     elementosDom.canvas.style.border = '1px solid black';
-    borraCanvas();
+
+    objeto.pieza = instanciar_pieza();
+
+    // ---------------------------------------
+    // const fps = constantes.fps;
+    const fps = 2;
+    setInterval(() => {
+        bucle_principal();
+    }, 1000 / fps);
 }
 
 // ---------------------------------------------------------------------
@@ -51,6 +63,8 @@ window.onload = () => {
 function bucle_principal() {
 
     borraCanvas();
-    
+    // console.log('bucle');
+
+    objeto.pieza.dibuja_pieza();
 }
 

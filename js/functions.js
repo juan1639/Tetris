@@ -6,6 +6,17 @@ import {
     colores,
 } from './constants.js';
 
+import { Pieza } from './classPieza.js';
+
+// =============================================================================
+function instanciar_pieza() {
+
+    const idPieza = Pieza.plantilla['t'];
+    const pieza = new Pieza(7, 4, idPieza);
+
+    return pieza;
+}
+
 // =============================================================================
 function borraCanvas() {
 
@@ -132,5 +143,6 @@ function check_entrarEnMejores10() {
 
 export {
     borraCanvas,
+    instanciar_pieza
 };
 

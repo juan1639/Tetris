@@ -19,6 +19,10 @@ const elementosDom = {
     ctx: null,
 }
 
+const objeto = {
+    pieza: null,
+}
+
 const marcadores = {
     lineas: 0,
     nivel: 1,
@@ -47,10 +51,10 @@ const sonido = {
 export {
     constantes,
     elementosDom,
+    objeto,
     marcadores,
     estado,
     sonido,
     varias,
     colores
 };
-
