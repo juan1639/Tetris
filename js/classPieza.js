@@ -5,8 +5,9 @@ import {
     constantes,
     elementosDom as ed,
     controles,
-    colores
 } from "./constants.js";
+
+import { check_colisiones } from "./functions.js";
 
 // ---------------------------------------------------------------------
 export class Pieza {
@@ -50,12 +51,17 @@ export class Pieza {
     actualiza_pieza() {
 
         if (controles.teclaIzquierda) {
+
             this.x --;
+            const colision = check_colisiones(this.x, this.y, this.idPieza);
+            if (colision) this.x ++;
             controles.teclaIzquierda = false;
             
         } else if (controles.teclaDerecha) {
 
             this.x ++;
+            const colision = check_colisiones(this.x, this.y, this.idPieza);
+            if (colision) this.x--;
             controles.teclaDerecha = false;
         }
     }

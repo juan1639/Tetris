@@ -98,18 +98,16 @@ window.onload = () => {
 // ---------------------------------------------------------------------
 function bucle_principal() {
 
-    //borraCanvas();
-    // console.log('bucle');
-
     // Renderiza el fondo (vacio o piezas acumulandose)...
-    for (let i = 0; i < 20; i ++) {
-        for (let ii = 0; ii < 14; ii ++) {
+    const filas = constantes.filas;
+    const columnas = constantes.columnas;
+    for (let i = 0; i < filas; i ++) {
+        for (let ii = 0; ii < columnas; ii ++) {
             const fondo = objeto.matrizFondo[i][ii];
-            fondo.dibuja();
+            fondo.dibuja(i, ii);
         }
     }
 
     // Renderiza las piezas ------------------------------
     if (objeto.pieza) objeto.pieza.dibuja_pieza();
 }
-

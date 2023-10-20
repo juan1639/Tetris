@@ -26,6 +26,7 @@ function instanciar_matrizFondo() {
     }
 
     console.log(matriz);
+    // ---------------------------------------------------------
     objeto.matrizFondo = matriz;
 
     for (let i = 0; i < filas; i ++) {
@@ -57,6 +58,26 @@ function instanciar_pieza() {
     const pieza = new Pieza(x, y, idPieza, coloresPieza);
 
     return pieza;
+}
+
+// =============================================================================
+function check_colisiones(x, y, idPieza) {
+
+    let colX = x;
+    let colY = y;
+
+    for (let relPos of idPieza) {
+
+        colX = x + relPos[0];
+        colY = y + relPos[1];
+
+        const posMatriz = objeto.matrizFondo[colY][colX];
+
+        if (colX >= constantes.columnas || colX < 0) return true;
+        if (posMatriz.valor != 0) return true;
+    }
+
+    return false;
 }
 
 // =============================================================================
@@ -186,6 +207,6 @@ function check_entrarEnMejores10() {
 export {
     borraCanvas,
     instanciar_matrizFondo,
-    instanciar_pieza
+    instanciar_pieza,
+    check_colisiones
 };
-
