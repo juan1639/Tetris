@@ -4,6 +4,7 @@
 import { 
     constantes,
     elementosDom as ed,
+    controles,
     colores
 } from "./constants.js";
 
@@ -31,6 +32,8 @@ export class Pieza {
 
     dibuja_pieza() {
 
+        this.actualiza_pieza();
+
         const idPieza = this.idPieza;
         const ancho = constantes.tileY;
         const alto = constantes.tileY;
@@ -40,11 +43,47 @@ export class Pieza {
             const x = (this.x + relPos[0]) * constantes.tileX;
             const y = (this.y + relPos[1]) * constantes.tileY;
 
-            ed.ctx.fillStyle = this.coloresPieza[1];
-            ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
-            
-            ed.ctx.fillStyle = this.coloresPieza[0];
-            ed.ctx.fillRect(x + 2, y + 2, ancho - 6, alto - 6);
+            this.draw_canvas(x, y, ancho, alto);
         }
+    }
+
+    actualiza_pieza() {
+
+        if (controles.teclaIzquierda) {
+            this.x --;
+            controles.teclaIzquierda = false;
+            
+        } else if (controles.teclaDerecha) {
+
+            this.x ++;
+            controles.teclaDerecha = false;
+        }
+    }
+
+    draw_canvas(x, y, ancho, alto) {
+
+        ed.ctx.beginPath();
+        ed.ctx.fillStyle = this.coloresPieza[1];
+        ed.ctx.moveTo(x, y);
+        ed.ctx.lineTo(x + ancho, y + alto);
+        ed.ctx.lineTo(x, y + alto);
+        ed.ctx.lineTo(x, y);
+        ed.ctx.fill();
+        ed.ctx.closePath();
+
+        ed.ctx.beginPath();
+        ed.ctx.fillStyle = this.coloresPieza[0];
+        ed.ctx.moveTo(x, y);
+        ed.ctx.lineTo(x + ancho, y);
+        ed.ctx.lineTo(x + ancho, y + alto);
+        ed.ctx.lineTo(x, y);
+        ed.ctx.fill();
+        ed.ctx.closePath();
+
+        // ed.ctx.fillStyle = this.coloresPieza[1];
+        // ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
+        
+        // ed.ctx.fillStyle = this.coloresPieza[0];
+        // ed.ctx.fillRect(x + 2, y + 2, ancho - 6, alto - 6);
     }
 }

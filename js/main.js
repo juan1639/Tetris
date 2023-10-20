@@ -6,6 +6,7 @@ import {
     constantes, 
     elementosDom,
     objeto,
+    controles,
     estado,
     varias
 } from "./constants.js";
@@ -31,12 +32,36 @@ for (let tipoEvento of constantes.eventos) {
         }
 
         if ((estado.enJuego && tipoEvento === eventoSel) || (estado.enJuego && tipoEvento === 'keydown')) {
+            console.log(ev.key, ev.keyCode);
 
             if (ev.key === 'z') {
                 varias.bandera = true;
                 objeto.pieza = instanciar_pieza();
+
+            } else if (ev.key === 'ArrowLeft' || ev.keyCode === 37) {
+                controles.teclaIzquierda = true;
+
+            } else if (ev.key === 'ArrowRight' || ev.keyCode === 39) {
+                controles.teclaDerecha = true;
+
             }
         }
+
+        /* if ((estado.enJuego && tipoEvento === eventoSel) || (estado.enJuego && tipoEvento === 'keyup')) {
+            console.log(ev.key, ev.keyCode);
+
+            if (ev.key === 'z') {
+                varias.bandera = true;
+                objeto.pieza = instanciar_pieza();
+
+            } else if (ev.key === 'ArrowLeft' || ev.keyCode === 37) {
+                controles.teclaIzquierda = false;
+
+            } else if (ev.key === 'ArrowRight' || ev.keyCode === 39) {
+                controles.teclaDerecha = false;
+
+            }
+        } */
     });
 }
 
@@ -61,8 +86,8 @@ window.onload = () => {
     //objeto.pieza = instanciar_pieza();
 
     // ---------------------------------------
-    // const fps = constantes.fps;
-    const fps = 2;
+    const fps = constantes.fps;
+    // const fps = 2;
     setInterval(() => {
         bucle_principal();
     }, 1000 / fps);
@@ -76,6 +101,7 @@ function bucle_principal() {
     //borraCanvas();
     // console.log('bucle');
 
+    // Renderiza el fondo (vacio o piezas acumulandose)...
     for (let i = 0; i < 20; i ++) {
         for (let ii = 0; ii < 14; ii ++) {
             const fondo = objeto.matrizFondo[i][ii];
@@ -83,6 +109,7 @@ function bucle_principal() {
         }
     }
 
+    // Renderiza las piezas ------------------------------
     if (objeto.pieza) objeto.pieza.dibuja_pieza();
 }
 

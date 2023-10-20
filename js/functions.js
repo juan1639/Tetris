@@ -45,7 +45,7 @@ function instanciar_pieza() {
     const x = constantes.xInicial;
     const y = constantes.yInicial;
     const piezas = constantes.piezas;
-    const color = constantes.colorPiezas2;
+    const color = colores.colorPiezas2;
 
     const nro_rnd = Math.floor(Math.random() * piezas.length);
     // const elegida = piezas[nro_rnd];
