@@ -10,12 +10,13 @@ import {
 // ---------------------------------------------------------------------
 export class Pieza {
 
-    constructor(x, y, idPieza) {
+    constructor(x, y, idPieza, coloresPieza) {
 
         console.log(x, y, idPieza);
         this.x = x;
         this.y = y;
         this.idPieza = idPieza;
+        this.coloresPieza = coloresPieza;
     }
 
     static plantilla = {
@@ -39,8 +40,11 @@ export class Pieza {
             const x = (this.x + relPos[0]) * constantes.tileX;
             const y = (this.y + relPos[1]) * constantes.tileY;
 
-            ed.ctx.fillStyle = 'red';
+            ed.ctx.fillStyle = this.coloresPieza[1];
             ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
+            
+            ed.ctx.fillStyle = this.coloresPieza[0];
+            ed.ctx.fillRect(x + 2, y + 2, ancho - 6, alto - 6);
         }
     }
 }

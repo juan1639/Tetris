@@ -6,11 +6,13 @@ import {
     constantes, 
     elementosDom,
     objeto,
-    estado
+    estado,
+    varias
 } from "./constants.js";
 
 import { 
     borraCanvas,
+    instanciar_matrizFondo,
     instanciar_pieza
 } from "./functions.js";
 
@@ -25,6 +27,14 @@ for (let tipoEvento of constantes.eventos) {
         if (estado.menu_principal && tipoEvento === eventoSel) {
 
             if (ev.target.id === 'comenzar') {
+            }
+        }
+
+        if ((estado.enJuego && tipoEvento === eventoSel) || (estado.enJuego && tipoEvento === 'keydown')) {
+
+            if (ev.key === 'z') {
+                varias.bandera = true;
+                objeto.pieza = instanciar_pieza();
             }
         }
     });
@@ -47,7 +57,8 @@ window.onload = () => {
     elementosDom.canvas.height = constantes.filas * constantes.tileY;
     elementosDom.canvas.style.border = '1px solid black';
 
-    objeto.pieza = instanciar_pieza();
+    objeto.matrizFondo = instanciar_matrizFondo();
+    //objeto.pieza = instanciar_pieza();
 
     // ---------------------------------------
     // const fps = constantes.fps;
@@ -62,9 +73,16 @@ window.onload = () => {
 // ---------------------------------------------------------------------
 function bucle_principal() {
 
-    borraCanvas();
+    //borraCanvas();
     // console.log('bucle');
 
-    objeto.pieza.dibuja_pieza();
+    for (let i = 0; i < 20; i ++) {
+        for (let ii = 0; ii < 14; ii ++) {
+            const fondo = objeto.matrizFondo[i][ii];
+            fondo.dibuja();
+        }
+    }
+
+    if (objeto.pieza) objeto.pieza.dibuja_pieza();
 }
 

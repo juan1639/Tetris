@@ -4,15 +4,57 @@
 import {
     elementosDom as ed,
     colores,
+    constantes,
+    objeto,
 } from './constants.js';
 
 import { Pieza } from './classPieza.js';
+import { MatrizFondo } from './classMatrizFondo.js';
+
+// =============================================================================
+function instanciar_matrizFondo() {
+
+    const filas = constantes.filas;
+    const columnas = constantes.columnas;
+
+    const matriz = new Array(filas);
+
+    for (let i = 0; i < matriz.length; i ++) {
+
+        matriz[i] = new Array(columnas).fill(0);
+        
+    }
+
+    console.log(matriz);
+    objeto.matrizFondo = matriz;
+
+    for (let i = 0; i < filas; i ++) {
+        for (let ii = 0; ii < columnas; ii ++) {
+
+            objeto.matrizFondo[i][ii] = new MatrizFondo(ii, i);
+
+        }
+    }
+
+    return objeto.matrizFondo;
+}
 
 // =============================================================================
 function instanciar_pieza() {
 
-    const idPieza = Pieza.plantilla['t'];
-    const pieza = new Pieza(7, 4, idPieza);
+    const x = constantes.xInicial;
+    const y = constantes.yInicial;
+    const piezas = constantes.piezas;
+    const color = constantes.colorPiezas2;
+
+    const nro_rnd = Math.floor(Math.random() * piezas.length);
+    // const elegida = piezas[nro_rnd];
+    const elegida = piezas.charAt(nro_rnd);
+    const idPieza = Pieza.plantilla[elegida];
+
+    const coloresPieza = color[nro_rnd];
+
+    const pieza = new Pieza(x, y, idPieza, coloresPieza);
 
     return pieza;
 }
@@ -143,6 +185,7 @@ function check_entrarEnMejores10() {
 
 export {
     borraCanvas,
+    instanciar_matrizFondo,
     instanciar_pieza
 };
 
