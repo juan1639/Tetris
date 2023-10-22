@@ -85,17 +85,34 @@ function check_colisiones(x, y, idPieza) {
 
 // =============================================================================
 function dejar_rastro_pieza(x, y, idPieza) {
-
+    
     let colX = x;
     let colY = y;
-
+    
     for (let relPos of idPieza) {
-
+        
         colX = x + relPos[0];
         colY = y + relPos[1];
         const posMatriz = objeto.matrizFondo[colY][colX];
-
+        
         posMatriz.valor = 9; // distinto de 0 = RatroPieza
+    }
+}
+
+// =============================================================================
+function actualizar_matrizFondo() {
+
+    // Desplazar los 'ratrosPiezas' hacia abajo al hacer linea -------
+    const filas = constantes.filas;
+    const columnas = constantes.columnas;
+    const matriz = objeto.matrizFondo;
+
+    for (let i = filas - 1; i > 0; i --) {
+        for (let ii = 0; ii < columnas; ii ++) {
+
+            matriz[i][ii].valor = matriz[i - 1][ii].valor;
+            //console.log(matriz[i][ii].valor);
+        }
     }
 }
 
@@ -228,5 +245,6 @@ export {
     instanciar_matrizFondo,
     instanciar_pieza,
     check_colisiones,
-    dejar_rastro_pieza
+    dejar_rastro_pieza,
+    actualizar_matrizFondo
 };

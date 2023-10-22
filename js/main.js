@@ -17,6 +17,8 @@ import {
     instanciar_pieza
 } from "./functions.js";
 
+import { MatrizFondo } from "./classMatrizFondo.js";
+
 let eventoSel;
 // ---------------------------------------------------------------------
 //  Eventos Raton, Touch, Key
@@ -44,7 +46,7 @@ for (let tipoEvento of constantes.eventos) {
             } else if (ev.key === 'ArrowRight' || ev.keyCode === 39) {
                 controles.teclaDerecha = true;
 
-            } else if (ev.key === 'ArrowDown' || ev.keyCode ===40) {
+            } else if (ev.key === 'ArrowDown' || ev.keyCode === 40) {
                 controles.teclaAbajo = true;
             }
         }
@@ -121,4 +123,7 @@ function bucle_principal() {
 
     // Instanciar Nueva Pieza ---------------------------------
     if (varias.otra_pieza) objeto.pieza = instanciar_pieza();
+    
+    // Check si hemos 'hecho linea' ---------------------------
+    MatrizFondo.check_lineDone();
 }

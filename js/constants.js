@@ -48,7 +48,7 @@ const estado = {
 
 const varias = {
     bandera: false,
-    dificultad_caer: 1200,
+    dificultad_caer: 1100,
     otra_pieza: false,
 }
 
