@@ -23,16 +23,45 @@ export class Pieza {
         this.y = y;
         this.idPieza = idPieza;
         this.coloresPieza = coloresPieza;
+        this.rotacion = 0;
     }
 
     static plantilla = {
-        z: [[0, 0], [0, -1], [-1, -1], [1, 0]],
-        s: [[0, 0], [0, -1], [1, -1], [-1, 0]],
-        l: [[0, 0], [0, -1], [0, -2], [1, 0]],
-        j: [[0, 0], [1, 0], [1, -1], [1, -2]],
-        o: [[0, 0], [0, -1], [1, -1], [1, 0]],
-        i: [[0, 0], [-1, 0], [1, 0], [2, 0]],
-        t: [[0, 0], [0, -1], [-1, 0], [1, 0]],
+        z: [[0, 0], [0, -1], [-1, -1], [1, 0],
+            [0, 0], [0, -1], [-1, 0], [-1, 1],
+            [0, 0], [0, -1], [-1, -1], [1, 0],
+            [0, 0], [0, -1], [-1, 0], [-1, 1]
+        ],
+        s: [[0, 0], [0, -1], [1, -1], [-1, 0],
+            [0, 0], [0, 1], [-1, -1], [-1, 0],
+            [0, 0], [0, -1], [1, -1], [-1, 0],
+            [0, 0], [0, 1], [-1, -1], [-1, 0]
+        ],
+        l: [[0, 0], [0, -1], [0, -2], [1, 0],
+            [0, 0], [-1, 0], [1, 0], [1, -1],
+            [0, 0], [0, -1], [0, -2], [-1, -2],
+            [0, 0], [0, -1], [1, -1], [2, -1]
+        ],
+        j: [[0, 0], [1, 0], [1, -1], [1, -2],
+            [0, 0], [0, -1], [-1, -1], [-2, -1],
+            [0, 0], [0, -1], [0, -2], [1, -2],
+            [0, 0], [0, -1], [1, 0], [2, 0]
+        ],
+        o: [[0, 0], [0, -1], [1, -1], [1, 0],
+            [0, 0], [0, -1], [1, -1], [1, 0],
+            [0, 0], [0, -1], [1, -1], [1, 0],
+            [0, 0], [0, -1], [1, -1], [1, 0]
+        ],
+        i: [[0, 0], [-1, 0], [1, 0], [2, 0],
+            [0, 0], [0, -1], [0, -2], [0, -3],
+            [0, 0], [-1, 0], [1, 0], [2, 0],
+            [0, 0], [0, -1], [0, -2], [0, -3]
+        ],
+        t: [[0, 0], [0, -1], [-1, 0], [1, 0],
+            [0, 0], [0, -1], [0, -2], [-1, -1],
+            [0, 0], [-1, 0], [1, 0], [0, 1],
+            [0, 0], [0, -1], [0, -2], [1, -1]
+        ],
     };
 
     dibuja_pieza() {
@@ -43,7 +72,10 @@ export class Pieza {
         const ancho = constantes.tileY;
         const alto = constantes.tileY;
 
-        for (let relPos of idPieza) {
+        const parte_array = this.rotacion * 4;
+        let rotacion_idPieza = idPieza.slice(parte_array, parte_array + 4);
+
+        for (let relPos of rotacion_idPieza) {
 
             const x = (this.x + relPos[0]) * constantes.tileX;
             const y = (this.y + relPos[1]) * constantes.tileY;
@@ -57,28 +89,42 @@ export class Pieza {
         if (controles.teclaIzquierda) {
 
             this.x --;
-            const colision = check_colisiones(this.x, this.y, this.idPieza);
+            const colision = check_colisiones(this.x, this.y, this.idPieza, this.rotacion);
             if (colision) this.x ++;
             controles.teclaIzquierda = false;
             
         } else if (controles.teclaDerecha) {
 
             this.x ++;
-            const colision = check_colisiones(this.x, this.y, this.idPieza);
+            const colision = check_colisiones(this.x, this.y, this.idPieza, this.rotacion);
             if (colision) this.x--;
             controles.teclaDerecha = false;
 
         } else if (controles.teclaAbajo) {
 
             this.y ++;
-            const colision = check_colisiones(this.x, this.y, this.idPieza);
+            const colision = check_colisiones(this.x, this.y, this.idPieza, this.rotacion);
             if (colision) {
                 this.y--;
                 varias.otra_pieza = true;
-                dejar_rastro_pieza(this.x, this.y, this.idPieza);
+                dejar_rastro_pieza(this.x, this.y, this.idPieza, this.rotacion);
             }
 
             controles.teclaAbajo = false;
+
+        } else if (controles.teclaRotar) {
+
+            const bck_rotacion = this.rotacion;
+            this.rotacion ++;
+            if (this.rotacion >= 4) this.rotacion = 0;
+
+            const colision = check_colisiones(this.x, this.y, this.idPieza, this.rotacion);
+            if (colision) {
+                console.log('No es posible rotar...');
+                this.rotacion = bck_rotacion;
+            }
+
+            controles.teclaRotar = false;
         }
     }
 

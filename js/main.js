@@ -48,6 +48,9 @@ for (let tipoEvento of constantes.eventos) {
 
             } else if (ev.key === 'ArrowDown' || ev.keyCode === 40) {
                 controles.teclaAbajo = true;
+
+            } else if (ev.key === 'Control' || ev.keyCode === 17 || ev.keyCode === 32) {
+                controles.teclaRotar = true;
             }
         }
 

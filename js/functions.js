@@ -21,9 +21,7 @@ function instanciar_matrizFondo() {
     const matriz = new Array(filas);
 
     for (let i = 0; i < matriz.length; i ++) {
-
         matriz[i] = new Array(columnas).fill(0);
-        
     }
 
     console.log(matriz);
@@ -34,7 +32,6 @@ function instanciar_matrizFondo() {
         for (let ii = 0; ii < columnas; ii ++) {
 
             objeto.matrizFondo[i][ii] = new MatrizFondo(ii, i);
-
         }
     }
 
@@ -64,12 +61,14 @@ function instanciar_pieza() {
 }
 
 // =============================================================================
-function check_colisiones(x, y, idPieza) {
+function check_colisiones(x, y, idPieza, rotacion) {
 
     let colX = x;
     let colY = y;
+    const parte_array = rotacion * 4;
+    let rotacion_idPieza = idPieza.slice(parte_array, parte_array + 4);
 
-    for (let relPos of idPieza) {
+    for (let relPos of rotacion_idPieza) {
 
         colX = x + relPos[0];
         colY = y + relPos[1];
@@ -84,12 +83,14 @@ function check_colisiones(x, y, idPieza) {
 }
 
 // =============================================================================
-function dejar_rastro_pieza(x, y, idPieza) {
+function dejar_rastro_pieza(x, y, idPieza, rotacion) {
     
     let colX = x;
     let colY = y;
+    const parte_array = rotacion * 4;
+    let rotacion_idPieza = idPieza.slice(parte_array, parte_array + 4);
     
-    for (let relPos of idPieza) {
+    for (let relPos of rotacion_idPieza) {
         
         colX = x + relPos[0];
         colY = y + relPos[1];
