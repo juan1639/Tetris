@@ -17,7 +17,7 @@ export class MatrizFondo {
        this.fila = fila;
        this.valor = 0;
 
-       if (this.fila === 2 && this.columna === 12) this.valor = 9;
+       //if (this.fila === 2 && this.columna === 12) this.valor = 9;
     }
 
     dibuja(i, ii) {
@@ -33,7 +33,7 @@ export class MatrizFondo {
 
         } else if (posMatriz.valor != 0) {
 
-            ed.ctx.fillStyle = 'pink';
+            ed.ctx.fillStyle = colores.rastro_pieza;
             ed.ctx.fillRect(x, y, constantes.tileX, constantes.tileY);
         }
     }

@@ -10,7 +10,7 @@ const constantes = {
     yInicial: 2,
     piezas: 'zsljoit',
     fps: 60,
-    gravedad: 1,
+    gravedad: true,
     eventos: ['touchstart', 'click', 'keydown', 'keyup'],
     endPoint: './mejoresResultados.json',
     listaRecords: null,
@@ -48,10 +48,13 @@ const estado = {
 
 const varias = {
     bandera: false,
+    dificultad_caer: 1200,
+    otra_pieza: false,
 }
 
 const colores = {
     fondo_canvas: "rgb(73, 73, 73)",
+    rastro_pieza: "rgb(150, 150, 150)",
     colorPiezas: [
         'beige',
         'orange',

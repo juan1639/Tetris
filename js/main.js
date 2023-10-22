@@ -44,6 +44,8 @@ for (let tipoEvento of constantes.eventos) {
             } else if (ev.key === 'ArrowRight' || ev.keyCode === 39) {
                 controles.teclaDerecha = true;
 
+            } else if (ev.key === 'ArrowDown' || ev.keyCode ===40) {
+                controles.teclaAbajo = true;
             }
         }
 
@@ -91,6 +93,12 @@ window.onload = () => {
     setInterval(() => {
         bucle_principal();
     }, 1000 / fps);
+
+    // ---------------------------------------
+    const caePieza = varias.dificultad_caer;
+    setInterval(() => {
+        if (constantes.gravedad) controles.teclaAbajo = true;
+    }, caePieza);
 }
 
 // ---------------------------------------------------------------------
@@ -108,6 +116,9 @@ function bucle_principal() {
         }
     }
 
-    // Renderiza las piezas ------------------------------
+    // Renderiza las piezas -----------------------------------
     if (objeto.pieza) objeto.pieza.dibuja_pieza();
+
+    // Instanciar Nueva Pieza ---------------------------------
+    if (varias.otra_pieza) objeto.pieza = instanciar_pieza();
 }

@@ -6,6 +6,7 @@ import {
     colores,
     constantes,
     objeto,
+    varias
 } from './constants.js';
 
 import { Pieza } from './classPieza.js';
@@ -43,6 +44,8 @@ function instanciar_matrizFondo() {
 // =============================================================================
 function instanciar_pieza() {
 
+    varias.otra_pieza = false;
+    
     const x = constantes.xInicial;
     const y = constantes.yInicial;
     const piezas = constantes.piezas;
@@ -70,14 +73,30 @@ function check_colisiones(x, y, idPieza) {
 
         colX = x + relPos[0];
         colY = y + relPos[1];
+        if (colX >= constantes.columnas || colX < 0) return true;
+        if (colY >= constantes.filas) return true;
 
         const posMatriz = objeto.matrizFondo[colY][colX];
-
-        if (colX >= constantes.columnas || colX < 0) return true;
         if (posMatriz.valor != 0) return true;
     }
 
     return false;
+}
+
+// =============================================================================
+function dejar_rastro_pieza(x, y, idPieza) {
+
+    let colX = x;
+    let colY = y;
+
+    for (let relPos of idPieza) {
+
+        colX = x + relPos[0];
+        colY = y + relPos[1];
+        const posMatriz = objeto.matrizFondo[colY][colX];
+
+        posMatriz.valor = 9; // distinto de 0 = RatroPieza
+    }
 }
 
 // =============================================================================
@@ -208,5 +227,6 @@ export {
     borraCanvas,
     instanciar_matrizFondo,
     instanciar_pieza,
-    check_colisiones
+    check_colisiones,
+    dejar_rastro_pieza
 };

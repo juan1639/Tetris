@@ -5,9 +5,13 @@ import {
     constantes,
     elementosDom as ed,
     controles,
+    varias
 } from "./constants.js";
 
-import { check_colisiones } from "./functions.js";
+import { 
+    check_colisiones,
+    dejar_rastro_pieza
+} from "./functions.js";
 
 // ---------------------------------------------------------------------
 export class Pieza {
@@ -63,13 +67,25 @@ export class Pieza {
             const colision = check_colisiones(this.x, this.y, this.idPieza);
             if (colision) this.x--;
             controles.teclaDerecha = false;
+
+        } else if (controles.teclaAbajo) {
+
+            this.y ++;
+            const colision = check_colisiones(this.x, this.y, this.idPieza);
+            if (colision) {
+                this.y--;
+                varias.otra_pieza = true;
+                dejar_rastro_pieza(this.x, this.y, this.idPieza);
+            }
+
+            controles.teclaAbajo = false;
         }
     }
 
     draw_canvas(x, y, ancho, alto) {
 
         ed.ctx.beginPath();
-        ed.ctx.fillStyle = this.coloresPieza[1];
+        ed.ctx.fillStyle = this.coloresPieza[2];
         ed.ctx.moveTo(x, y);
         ed.ctx.lineTo(x + ancho, y + alto);
         ed.ctx.lineTo(x, y + alto);
@@ -86,10 +102,7 @@ export class Pieza {
         ed.ctx.fill();
         ed.ctx.closePath();
 
-        // ed.ctx.fillStyle = this.coloresPieza[1];
-        // ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
-        
         // ed.ctx.fillStyle = this.coloresPieza[0];
-        // ed.ctx.fillRect(x + 2, y + 2, ancho - 6, alto - 6);
+        // ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
     }
 }
