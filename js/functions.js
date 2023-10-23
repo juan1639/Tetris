@@ -101,14 +101,14 @@ function dejar_rastro_pieza(x, y, idPieza, rotacion) {
 }
 
 // =============================================================================
-function actualizar_matrizFondo() {
+function actualizar_matrizFondo(fila) {
 
     // Desplazar los 'ratrosPiezas' hacia abajo al hacer linea -------
     const filas = constantes.filas;
     const columnas = constantes.columnas;
     const matriz = objeto.matrizFondo;
 
-    for (let i = filas - 1; i > 0; i --) {
+    for (let i = fila; i > 0; i --) {
         for (let ii = 0; ii < columnas; ii ++) {
 
             matriz[i][ii].valor = matriz[i - 1][ii].valor;

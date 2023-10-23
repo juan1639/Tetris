@@ -25,6 +25,7 @@ const elementosDom = {
 const objeto = {
     matrizFondo: [],
     pieza: null,
+    scores: null,
 }
 
 const controles = {

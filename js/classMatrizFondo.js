@@ -24,21 +24,24 @@ export class MatrizFondo {
 
     static check_lineDone() {
 
-        const matrizLinea = objeto.matrizFondo[19];
-        //console.log(matrizLinea);
+        const filas = constantes.filas;
 
-        let contador_cols = 0;
+        for (let i = filas - 1; i > 0; i --) {
 
-        for (let cols of matrizLinea) {
-            if (cols.valor != 0) contador_cols ++; 
+            const matrizLinea = objeto.matrizFondo[i];
+            //console.log(matrizLinea);
+
+            let contador_cols = 0;
+
+            for (let cols of matrizLinea) {
+                if (cols.valor != 0) contador_cols ++; 
+            }
+            
+            if (contador_cols === 14) {
+                objeto.scores.lineas ++;
+                actualizar_matrizFondo(i);
+            }
         }
-        
-        if (contador_cols === 14) {
-            actualizar_matrizFondo();
-            return true;
-        }
-
-        return false;
     }
 
     dibuja(i, ii) {

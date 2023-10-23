@@ -8,7 +8,8 @@ import {
     objeto,
     controles,
     estado,
-    varias
+    varias,
+    marcadores
 } from "./constants.js";
 
 import { 
@@ -18,6 +19,7 @@ import {
 } from "./functions.js";
 
 import { MatrizFondo } from "./classMatrizFondo.js";
+import { Marcadores } from "./classMarcadores.js";
 
 let eventoSel;
 // ---------------------------------------------------------------------
@@ -89,17 +91,19 @@ window.onload = () => {
     elementosDom.canvas.height = constantes.filas * constantes.tileY;
     elementosDom.canvas.style.border = '1px solid black';
 
+    // -------------------------------------------------------
     objeto.matrizFondo = instanciar_matrizFondo();
-    //objeto.pieza = instanciar_pieza();
+    objeto.scores = new Marcadores(marcadores.lineas, marcadores.nivel);
+    objeto.pieza = instanciar_pieza();
 
-    // ---------------------------------------
+    // -------------------------------------------------------
     const fps = constantes.fps;
     // const fps = 2;
     setInterval(() => {
         bucle_principal();
     }, 1000 / fps);
 
-    // ---------------------------------------
+    // -------------------------------------------------------
     const caePieza = varias.dificultad_caer;
     setInterval(() => {
         if (constantes.gravedad) controles.teclaAbajo = true;
@@ -129,4 +133,7 @@ function bucle_principal() {
     
     // Check si hemos 'hecho linea' ---------------------------
     MatrizFondo.check_lineDone();
+
+    // Render Scores ------------------------------------------
+    objeto.scores.mostrar_marcadores();
 }
