@@ -10,24 +10,118 @@ html, body {
 }
 
 .contenedor__principal {
-	/* border: 2px solid red; */
-	width: inherit;
-	height: inherit;
+	border: 2px solid red;
+	width: 100%;
+	height: 100%;
 	background-color: rgb(194, 168, 16);
+	display: block;
+}
+
+.contenedor__2do {
+	border: 2px solid pink;
+    width: 100%;
+    height: fit-content;
+	background-color: inherit;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
 }
 
-.contenedor__2do {
-	/* border: 2px solid red; */
-	/* width: 500px; */
-	/* height: 550px; */
-    width: 90%;
-    height: 90%;
-	max-width: 800px;
+.contenedor__botones {
+	border: 2px solid orange;
+    width: 100%;
+    height: fit-content;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 	background-color: inherit;
-	display: inherit;
-	align-items: inherit;
-	justify-content: inherit;
+}
+
+#segundaFila__botones {
+	grid-template-columns: 67% 33%;
+}
+
+/*---------------------------------------------------------
+BOTONES < CONTROLES & NUEVA PARTIDA >
+---------------------------------------------------------*/
+.boton {
+	width: fit-content;
+	height: fit-content;
+	border-radius: 6px;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	padding: 5px 25px 7px 25px;
+	outline: none;
+}
+
+.boton:active {
+	transform: translate(-2px, -4px);
+}
+
+.NewGame {
+	display: flex;
+	color: #FFFFA5; 
+	background-color: #ff3010;
+	text-shadow: 2px 2px 2px black;
+	box-shadow: inset 0 -0.5em 0 -0.35em rgba(0, 0, 0, 0.45);
+}
+
+.controles {
+	height: 60px;
+	color: black;
+	border-radius: 6px;
+	background: linear-gradient(#CCC, #777);
+	font-size: 20px;
+	font-weight: bold;
+	box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+
+/* #boton__up {
+	width: 100%;
+	border-radius: 90% 90% 0 0;
+} */
+
+#boton__do {
+	width: 100%;
+	border-radius: 0 0 90% 90%;
+}
+
+#boton__le, #boton__ri {
+	width: 100%;
+}
+
+#boton__menu, #boton__rotar {
+	width: 100%;
+	padding: 5px 5px 7px 5px;
+}
+
+.flecha__direccion {
+	box-sizing: content-box;
+	width: 1px;
+	height: 1px;
+	border: 20px solid;
+}
+
+.arriba {
+	border-color: transparent transparent black transparent;
+	margin: 0 0 7% 0;
+}
+
+.izquierda {
+	border-color: transparent black transparent transparent;
+}
+
+.derecha {
+	border-color: transparent transparent transparent black;
+}
+
+.abajo {
+	border-color: black transparent transparent transparent;
+	margin: 7% 0 0 0;
 }

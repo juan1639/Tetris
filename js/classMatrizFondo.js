@@ -5,7 +5,8 @@ import {
     colores,
     constantes,
     elementosDom as ed,
-    objeto
+    objeto,
+    sonido
 } from "./constants.js";
 
 import { actualizar_matrizFondo } from "./functions.js";
@@ -36,6 +37,7 @@ export class MatrizFondo {
             }
             
             if (contador_cols === 14) {
+                sonido.lineaHecha.play();
                 objeto.scores.lineas ++;
                 actualizar_matrizFondo(i);
             }

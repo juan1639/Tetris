@@ -38,6 +38,7 @@ const controles = {
 const marcadores = {
     lineas: 0,
     nivel: 1,
+    record: 27
 }
 
 const estado = {
@@ -78,6 +79,9 @@ const colores = {
 
 const sonido = {
     gameOverVoz: new Audio('./sonidos/gameover.mp3'),
+    musicaFondo: new Audio('./sonidos/russia-tetris-game-puzzle.mp3'),
+    lineaHecha: new Audio('./sonidos/disparo.mp3'),
+    click: new Audio('./sonidos/click.mp3')
 }
 
 // -----------------------------------------------------------------------------

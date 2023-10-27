@@ -9,7 +9,8 @@ import {
     controles,
     estado,
     varias,
-    marcadores
+    marcadores,
+    sonido
 } from "./constants.js";
 
 import { 
@@ -37,10 +38,17 @@ for (let tipoEvento of constantes.eventos) {
 
         if ((estado.enJuego && tipoEvento === eventoSel) || (estado.enJuego && tipoEvento === 'keydown')) {
             console.log(ev.key, ev.keyCode);
+            console.log(sonido.musicaFondo.paused);
 
-            if (ev.key === 'z') {
-                varias.bandera = true;
-                objeto.pieza = instanciar_pieza();
+            if (ev.key === 's' || ev.key === 'S') {
+                //varias.bandera = true;
+                //objeto.pieza = instanciar_pieza();
+                //sonido.musicaFondo.play();
+                if (sonido.musicaFondo.paused) {
+                    sonido.musicaFondo.play()
+                } else {
+                    sonido.musicaFondo.pause()
+                }
 
             } else if (ev.key === 'ArrowLeft' || ev.keyCode === 37) {
                 controles.teclaIzquierda = true;
