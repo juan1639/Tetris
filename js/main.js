@@ -21,6 +21,7 @@ import {
 
 import { MatrizFondo } from "./classMatrizFondo.js";
 import { Marcadores } from "./classMarcadores.js";
+import { Textos } from "./classTextos.js";
 
 let eventoSel;
 // ---------------------------------------------------------------------
@@ -32,7 +33,15 @@ for (let tipoEvento of constantes.eventos) {
 
         if (estado.menu_principal && tipoEvento === eventoSel) {
 
-            if (ev.target.id === 'comenzar') {
+            if (ev.target.id === 'canvas') {
+                estado.menu_principal = false;
+                estado.enJuego = true;
+
+                if (sonido.musicaFondo.paused) {
+                    sonido.musicaFondo.play()
+                } else {
+                    sonido.musicaFondo.pause()
+                }
             }
         }
 
@@ -64,21 +73,29 @@ for (let tipoEvento of constantes.eventos) {
             }
         }
 
-        /* if ((estado.enJuego && tipoEvento === eventoSel) || (estado.enJuego && tipoEvento === 'keyup')) {
-            console.log(ev.key, ev.keyCode);
+        if (estado.enJuego && tipoEvento === eventoSel) {
+            console.log(ev.target.id);
 
-            if (ev.key === 'z') {
-                varias.bandera = true;
-                objeto.pieza = instanciar_pieza();
+            if (ev.target.id === 'boton__le' || ev.target.id === 'flecha__le') {
+                controles.teclaIzquierda = true;
 
-            } else if (ev.key === 'ArrowLeft' || ev.keyCode === 37) {
-                controles.teclaIzquierda = false;
+            } else if (ev.target.id === 'boton__ri' || ev.target.id === 'flecha__ri') {
+                controles.teclaDerecha = true;
 
-            } else if (ev.key === 'ArrowRight' || ev.keyCode === 39) {
-                controles.teclaDerecha = false;
+            } else if (ev.target.id === 'boton__do' || ev.target.id === 'flecha__do') {
+                controles.teclaAbajo = true;
 
+            } else if (ev.target.id === 'boton__rotar') {
+                controles.teclaRotar = true;
+
+            } else if (ev.target.id === 'boton__menu') {
+                if (sonido.musicaFondo.paused) {
+                    sonido.musicaFondo.play()
+                } else {
+                    sonido.musicaFondo.pause()
+                }
             }
-        } */
+        }
     });
 }
 
@@ -101,12 +118,16 @@ window.onload = () => {
 
     // -------------------------------------------------------
     objeto.matrizFondo = instanciar_matrizFondo();
+
+    const tx = Math.floor(elementosDom.canvas.width / 2);
+    const ty = Math.floor(elementosDom.canvas.height / 2);
+    objeto.textos = new Textos(tx, ty, 'Toque o haga click para comenzar...', 15, 'center', 'lightblue');
     objeto.scores = new Marcadores(marcadores.lineas, marcadores.nivel);
+
     objeto.pieza = instanciar_pieza();
 
     // -------------------------------------------------------
     const fps = constantes.fps;
-    // const fps = 2;
     setInterval(() => {
         bucle_principal();
     }, 1000 / fps);
@@ -144,4 +165,7 @@ function bucle_principal() {
 
     // Render Scores ------------------------------------------
     objeto.scores.mostrar_marcadores();
+
+    // Render Textos ------------------------------------------
+    objeto.textos.mostrar_txt();
 }

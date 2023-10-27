@@ -5,7 +5,8 @@ import {
     constantes,
     elementosDom as ed,
     controles,
-    varias
+    varias,
+    estado
 } from "./constants.js";
 
 import { 
@@ -85,6 +86,8 @@ export class Pieza {
     }
 
     actualiza_pieza() {
+
+        if (!estado.enJuego) return;
 
         if (controles.teclaIzquierda) {
 

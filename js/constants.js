@@ -25,6 +25,7 @@ const elementosDom = {
 const objeto = {
     matrizFondo: [],
     pieza: null,
+    textos: null,
     scores: null,
 }
 
@@ -42,8 +43,8 @@ const marcadores = {
 }
 
 const estado = {
-    menu_principal: false,
-    enJuego: true,
+    menu_principal: true,
+    enJuego: false,
     entreNiveles: false,
     game_over: false
 }
