@@ -121,7 +121,7 @@ function bucle_principal() {
     for (let i = 0; i < filas; i ++) {
         for (let ii = 0; ii < columnas; ii ++) {
             const fondo = objeto.matrizFondo[i][ii];
-            fondo.dibuja(i, ii);
+            fondo.dibuja();
         }
     }
 

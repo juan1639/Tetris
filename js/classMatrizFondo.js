@@ -18,8 +18,6 @@ export class MatrizFondo {
        this.columna = columna;
        this.fila = fila;
        this.valor = 0;
-
-       if (this.fila === 2 && this.columna === 12) this.valor = 9;
     }
 
     static check_lineDone() {
@@ -44,11 +42,11 @@ export class MatrizFondo {
         }
     }
 
-    dibuja(i, ii) {
+    dibuja() {
 
         const x = this.columna * constantes.tileX;
         const y = this.fila * constantes.tileY;
-        const posMatriz = objeto.matrizFondo[i][ii];
+        const posMatriz = objeto.matrizFondo[this.fila][this.columna];
 
         if (posMatriz.valor === 0) {
 

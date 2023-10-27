@@ -73,7 +73,7 @@ function check_colisiones(x, y, idPieza, rotacion) {
         colX = x + relPos[0];
         colY = y + relPos[1];
         if (colX >= constantes.columnas || colX < 0) return true;
-        if (colY >= constantes.filas) return true;
+        if (colY >= constantes.filas || colY < 0) return true;
 
         const posMatriz = objeto.matrizFondo[colY][colX];
         if (posMatriz.valor != 0) return true;
