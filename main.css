@@ -134,5 +134,17 @@ RESPONSIVE
 	#segundaFila__botones {
 		grid-template-columns: 67% 33%;
 	}
+
+	#boton__noDir__rotar {
+		width: 70%;
+		height: 70%;
+		background: url('./img/icono_rotar.png') no-repeat center center;
+	}
+
+	#boton__noDir__menu {
+		width: 70%;
+		height: 70%;
+		background: url('./img/icono_menuHamburguesa.png') no-repeat center center;
+	}
 }
 

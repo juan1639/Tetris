@@ -20,6 +20,8 @@ const elementosDom = {
     contenedor2do: document.getElementsByClassName('contenedor__2do'),
     canvas: document.getElementById('canvas'),
     ctx: null,
+    icono_rotar: document.getElementById('boton__noDir__rotar'),
+    icono_menu: document.getElementById('boton__noDir__menu'),
 }
 
 const objeto = {
@@ -51,6 +53,14 @@ const estado = {
 
 const varias = {
     bandera: false,
+    bandera_levelUp: [
+        [0, 7], [0, 12], [0, 20],
+        [0, 24], [0, 32], [0, 40],
+        [0, 50], [0, 64], [0, 75],
+        [0, 90], [0, 100], [0, 120],
+        [0, 150], [0, 180], [0, 200]
+    ],
+    cae_pieza: null,
     dificultad_caer: 1100,
     otra_pieza: false,
 }
@@ -82,7 +92,8 @@ const sonido = {
     gameOverVoz: new Audio('./sonidos/gameover.mp3'),
     musicaFondo: new Audio('./sonidos/russia-tetris-game-puzzle.mp3'),
     lineaHecha: new Audio('./sonidos/disparo.mp3'),
-    click: new Audio('./sonidos/click.mp3')
+    click: new Audio('./sonidos/click.mp3'),
+    levelUp: new Audio('./sonidos/levelup.mp3')
 }
 
 // -----------------------------------------------------------------------------

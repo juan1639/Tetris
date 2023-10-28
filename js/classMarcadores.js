@@ -8,7 +8,7 @@ export class Marcadores {
 
     constructor(lineas, nivel) {
         this._lineas = lineas;
-        this.nivel = nivel;
+        this._nivel = nivel;
     }
 
     mostrar_marcadores() {
@@ -26,7 +26,7 @@ export class Marcadores {
 
         // -----------------------------------------------------
         x = ed.canvas.width / 2;
-        const nivelTxt = 'Nivel: ' + this.nivel.toString();
+        const nivelTxt = 'Nivel: ' + this._nivel.toString();
 
         ed.ctx.fillStyle = 'beige';
         ed.ctx.textAlign = 'center';
@@ -39,5 +39,13 @@ export class Marcadores {
 
     set lineas(updateLineas) {
         this._lineas = updateLineas;
+    }
+
+    get nivel() {
+        return this._nivel;
+    }
+
+    set nivel(updateNivel) {
+        this._nivel = updateNivel;
     }
 }

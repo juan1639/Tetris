@@ -5,12 +5,16 @@ import {
     elementosDom as ed,
     colores,
     constantes,
+    marcadores,
+    estado,
     objeto,
-    varias
+    varias,
+    sonido
 } from './constants.js';
 
 import { Pieza } from './classPieza.js';
 import { MatrizFondo } from './classMatrizFondo.js';
+import { Textos } from './classTextos.js';
 
 // =============================================================================
 function instanciar_matrizFondo() {
@@ -113,6 +117,42 @@ function actualizar_matrizFondo(fila) {
 
             matriz[i][ii].valor = matriz[i - 1][ii].valor;
             //console.log(matriz[i][ii].valor);
+        }
+    }
+}
+
+// =============================================================================
+function check_levelUp(lineas) {
+
+    //console.log(lineas);
+
+    for (let i of varias.bandera_levelUp) {
+
+        const bandera = i[0];
+        const lineasLevelUp = i[1];
+
+        if (lineas === lineasLevelUp && bandera === 0) {
+
+            i[0] = 1;
+            estado.enJuego = false;
+            estado.entreNiveles = true;
+            console.log(estado.enJuego, estado.entreNiveles);
+
+            if (!sonido.musicaFondo.paused) sonido.musicaFondo.pause();
+            sonido.levelUp.play();
+
+            const tx = Math.floor(ed.canvas.width / 2);
+            const ty = Math.floor(ed.canvas.height / 3);
+            objeto.textos = new Textos(tx, ty, 'Nivel SUPERADO!', 20, 'center', 'orangered', 'entreNiveles');
+            objeto.scores.nivel ++;
+
+            setTimeout(() => {
+                estado.enJuego = true;
+                estado.entreNiveles = false;
+                
+                if (sonido.musicaFondo.paused) sonido.musicaFondo.play()
+                
+            }, 5000);
         }
     }
 }
@@ -247,5 +287,6 @@ export {
     instanciar_pieza,
     check_colisiones,
     dejar_rastro_pieza,
-    actualizar_matrizFondo
+    actualizar_matrizFondo,
+    check_levelUp
 };

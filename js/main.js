@@ -16,7 +16,8 @@ import {
 import { 
     borraCanvas,
     instanciar_matrizFondo,
-    instanciar_pieza
+    instanciar_pieza,
+    check_levelUp
 } from "./functions.js";
 
 import { MatrizFondo } from "./classMatrizFondo.js";
@@ -39,6 +40,7 @@ for (let tipoEvento of constantes.eventos) {
 
                 if (sonido.musicaFondo.paused) {
                     sonido.musicaFondo.play()
+                    sonido.musicaFondo.volume = 0.4;
                 } else {
                     sonido.musicaFondo.pause()
                 }
@@ -116,12 +118,14 @@ window.onload = () => {
     elementosDom.canvas.height = constantes.filas * constantes.tileY;
     elementosDom.canvas.style.border = '1px solid black';
 
+    //elementosDom.icono_rotar.style.backgroundImage = "url('./img/icono_rotar.png')";
+
     // -------------------------------------------------------
     objeto.matrizFondo = instanciar_matrizFondo();
 
     const tx = Math.floor(elementosDom.canvas.width / 2);
     const ty = Math.floor(elementosDom.canvas.height / 2);
-    objeto.textos = new Textos(tx, ty, 'Toque o haga click para comenzar...', 15, 'center', 'lightblue');
+    objeto.textos = new Textos(tx, ty, 'Toque o haga click para comenzar...', 15, 'center', 'lightblue', 'menu_principal');
     objeto.scores = new Marcadores(marcadores.lineas, marcadores.nivel);
 
     objeto.pieza = instanciar_pieza();
@@ -133,10 +137,9 @@ window.onload = () => {
     }, 1000 / fps);
 
     // -------------------------------------------------------
-    const caePieza = varias.dificultad_caer;
-    setInterval(() => {
+    varias.cae_pieza = setInterval(() => {
         if (constantes.gravedad) controles.teclaAbajo = true;
-    }, caePieza);
+    }, varias.dificultad_caer);
 }
 
 // ---------------------------------------------------------------------
@@ -168,4 +171,7 @@ function bucle_principal() {
 
     // Render Textos ------------------------------------------
     objeto.textos.mostrar_txt();
+
+    // Check levelUp ------------------------------------------
+    check_levelUp(objeto.scores.lineas);
 }
