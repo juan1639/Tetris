@@ -14,7 +14,6 @@ import {
 } from "./constants.js";
 
 import { 
-    borraCanvas,
     instanciar_matrizFondo,
     instanciar_pieza,
     check_levelUp
@@ -40,7 +39,7 @@ for (let tipoEvento of constantes.eventos) {
 
                 if (sonido.musicaFondo.paused) {
                     sonido.musicaFondo.play()
-                    sonido.musicaFondo.volume = 0.4;
+                    sonido.musicaFondo.volume = 0.6;
                 } else {
                     sonido.musicaFondo.pause()
                 }
@@ -126,7 +125,7 @@ window.onload = () => {
     const tx = Math.floor(elementosDom.canvas.width / 2);
     const ty = Math.floor(elementosDom.canvas.height / 2);
     objeto.textos = new Textos(tx, ty, 'Toque o haga click para comenzar...', 15, 'center', 'lightblue', 'menu_principal');
-    objeto.scores = new Marcadores(marcadores.lineas, marcadores.nivel);
+    objeto.scores = new Marcadores(marcadores.lineas, marcadores.nivel, marcadores.record);
 
     objeto.pieza = instanciar_pieza();
 
@@ -139,7 +138,7 @@ window.onload = () => {
     // -------------------------------------------------------
     varias.cae_pieza = setInterval(() => {
         if (constantes.gravedad) controles.teclaAbajo = true;
-    }, varias.dificultad_caer);
+    }, varias.dificultad_caer[1]);
 }
 
 // ---------------------------------------------------------------------

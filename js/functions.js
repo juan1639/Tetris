@@ -131,7 +131,7 @@ function check_levelUp(lineas) {
         const bandera = i[0];
         const lineasLevelUp = i[1];
 
-        if (lineas === lineasLevelUp && bandera === 0) {
+        if (lineas >= lineasLevelUp && lineas < lineasLevelUp + 4 && bandera === 0) {
 
             i[0] = 1;
             estado.enJuego = false;
@@ -145,6 +145,8 @@ function check_levelUp(lineas) {
             const ty = Math.floor(ed.canvas.height / 3);
             objeto.textos = new Textos(tx, ty, 'Nivel SUPERADO!', 20, 'center', 'orangered', 'entreNiveles');
             objeto.scores.nivel ++;
+
+            Pieza.incr_dificultad_caePieza();
 
             setTimeout(() => {
                 estado.enJuego = true;

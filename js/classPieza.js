@@ -5,6 +5,7 @@ import {
     constantes,
     elementosDom as ed,
     controles,
+    objeto,
     varias,
     estado
 } from "./constants.js";
@@ -64,6 +65,18 @@ export class Pieza {
             [0, 0], [0, -1], [0, -2], [1, -1]
         ],
     };
+
+    static incr_dificultad_caePieza() {
+
+        const dificultad = varias.dificultad_caer[objeto.scores.nivel];
+        console.log(dificultad);
+
+        clearInterval(varias.cae_pieza);
+
+        varias.cae_pieza = setInterval(() => {
+            if (constantes.gravedad) controles.teclaAbajo = true;
+        }, dificultad);
+    }
 
     dibuja_pieza() {
 
