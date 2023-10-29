@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------
-//  Clase MatrizFondo (0 = vacio, 1 = No vacio)
+//  Clase MatrizFondo (0 = vacio, != 0 No vacio)
+// 
 // ---------------------------------------------------------------------
 import { 
     colores,
@@ -36,7 +37,7 @@ export class MatrizFondo {
                 if (cols.valor != 0) contador_cols ++; 
             }
             
-            if (contador_cols === 14) {
+            if (contador_cols === matrizLinea.length) {
                 sonido.lineaHecha.play();
                 objeto.scores.lineas ++;
                 actualizar_matrizFondo(i);

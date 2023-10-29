@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------
 //  Funciones varias
+// 
 // ---------------------------------------------------------------------
 import {
     elementosDom as ed,
@@ -160,6 +161,53 @@ function check_levelUp(lineas) {
 }
 
 // =============================================================================
+function ir_al_gameOver() {
+
+    estado.game_over = true;
+    estado.enJuego = false;
+    sonido.gameOverVoz.play();
+
+    const tx = Math.floor(ed.canvas.width / 2);
+    const ty = Math.floor(ed.canvas.height / 2);
+    objeto.textos = new Textos(tx, ty, 'Game Over', 35, 'center', 'yellowgreen', 'game_over');
+    
+    setTimeout(() => {
+        estado.game_over = false;
+        estado.rejugar = true;
+        sonido.musicaFondo.pause();
+
+        const tx = Math.floor(ed.canvas.width / 2);
+        let ty = Math.floor(ed.canvas.height / 2);
+        objeto.textos = new Textos(tx, ty, 'Game Over', 35, 'center', 'yellowgreen', 'rejugar');
+
+        ty = Math.floor(ed.canvas.height / 1.1);
+        objeto.textos2 = new Textos(tx, ty, 'Toque o haga click para continuar...', 15, 'center', 'white', 'rejugar');
+    }, 5500);
+}
+
+// =============================================================================
+function resetear_rejugar() {
+
+    if (objeto.scores.lineas > objeto.scores.record) objeto.scores.record = objeto.scores.lineas;
+
+    objeto.scores.lineas = 0;
+    objeto.scores.nivel = 1;
+
+    const filas = constantes.filas;
+    const columnas = constantes.columnas;
+    for (let i = 0; i < filas; i ++) {
+        for (let ii = 0; ii < columnas; ii ++) {
+            const fondo = objeto.matrizFondo[i][ii];
+            fondo.valor = 0;
+        }
+    }
+
+    const tx = Math.floor(ed.canvas.width / 2);
+    const ty = Math.floor(ed.canvas.height / 2);
+    objeto.textos2 = new Textos(tx, ty, 'Toque o haga click para comenzar...', 15, 'center', 'lightblue', 'menu_principal');
+}
+
+// =============================================================================
 function borraCanvas() {
 
     ed.ctx.fillStyle = colores.fondo_canvas;
@@ -290,5 +338,7 @@ export {
     check_colisiones,
     dejar_rastro_pieza,
     actualizar_matrizFondo,
-    check_levelUp
+    check_levelUp,
+    ir_al_gameOver,
+    resetear_rejugar
 };

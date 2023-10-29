@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------
 //  Clase Marcadores ( Lineas, nivel )
+// 
 // ---------------------------------------------------------------------
 import { elementosDom as ed, colores } from "./constants.js";
 
@@ -20,7 +21,7 @@ export class Marcadores {
         const lineasTxt = 'Lineas: ' + this._lineas.toString();
 
         ed.ctx.save();
-        ed.ctx.font = sizeText.toString() + 'px arial';
+        ed.ctx.font = sizeText.toString() + 'px impact';
         ed.ctx.shadowColor = 'lightyellow';
         ed.ctx.shadowBlur = 14;
         ed.ctx.fillStyle = colores.colorPiezas2[0][3];

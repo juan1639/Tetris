@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------
 //  Clase Marcadores ( Lineas, nivel )
+// 
 // ---------------------------------------------------------------------
 import { 
     elementosDom as ed,
@@ -26,7 +27,7 @@ export class Textos {
         if (!estado[this.estado]) return;
 
         ed.ctx.save();
-        ed.ctx.font = this.size.toString() + 'px arial';
+        ed.ctx.font = this.size.toString() + 'px impact';
         ed.ctx.shadowColor = this.colorBlur;
         ed.ctx.shadowBlur = 17;
         ed.ctx.fillStyle = this.color;
@@ -40,5 +41,6 @@ export class Textos {
         if (this.estado === 'menu_principal') this.colorBlur = 'white';
         if (this.estado === 'entreNiveles') this.colorBlur = 'orange';
         if (this.estado === 'game_over') this.colorBlur = 'lightgreen';
+        //if (this.estado === 'rejugar') this.colorBlur = 'lightyellow';
     }
 }

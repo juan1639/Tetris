@@ -16,7 +16,8 @@ import {
 import { 
     instanciar_matrizFondo,
     instanciar_pieza,
-    check_levelUp
+    check_levelUp,
+    resetear_rejugar
 } from "./functions.js";
 
 import { MatrizFondo } from "./classMatrizFondo.js";
@@ -26,6 +27,7 @@ import { Textos } from "./classTextos.js";
 let eventoSel;
 // ---------------------------------------------------------------------
 //  Eventos Raton, Touch, Key
+// 
 // ---------------------------------------------------------------------
 for (let tipoEvento of constantes.eventos) {
 
@@ -34,6 +36,7 @@ for (let tipoEvento of constantes.eventos) {
         if (estado.menu_principal && tipoEvento === eventoSel) {
 
             if (ev.target.id === 'canvas') {
+
                 estado.menu_principal = false;
                 estado.enJuego = true;
 
@@ -43,6 +46,35 @@ for (let tipoEvento of constantes.eventos) {
                 } else {
                     sonido.musicaFondo.pause()
                 }
+            } 
+        }
+
+        if (estado.rejugar && tipoEvento === eventoSel) {
+
+            if (ev.target.id === 'canvas') {
+                estado.menu_principal = true;
+                estado.rejugar = false;
+                sonido.click.play();
+
+                resetear_rejugar();
+            }
+        }
+
+        if (tipoEvento === eventoSel && (ev.target.id === 'boton__menu' || ev.target.id === 'boton__noDir__menu')) {
+
+            if (sonido.musicaFondo.paused) {
+                sonido.musicaFondo.play()
+            } else {
+                sonido.musicaFondo.pause()
+            }
+        }
+
+        if (tipoEvento === 'keydown' && (ev.key === 's' || ev.key === 'S')) {
+
+            if (sonido.musicaFondo.paused) {
+                sonido.musicaFondo.play()
+            } else {
+                sonido.musicaFondo.pause()
             }
         }
 
@@ -50,17 +82,7 @@ for (let tipoEvento of constantes.eventos) {
             console.log(ev.key, ev.keyCode);
             console.log(sonido.musicaFondo.paused);
 
-            if (ev.key === 's' || ev.key === 'S') {
-                //varias.bandera = true;
-                //objeto.pieza = instanciar_pieza();
-                //sonido.musicaFondo.play();
-                if (sonido.musicaFondo.paused) {
-                    sonido.musicaFondo.play()
-                } else {
-                    sonido.musicaFondo.pause()
-                }
-
-            } else if (ev.key === 'ArrowLeft' || ev.keyCode === 37) {
+            if (ev.key === 'ArrowLeft' || ev.keyCode === 37) {
                 controles.teclaIzquierda = true;
 
             } else if (ev.key === 'ArrowRight' || ev.keyCode === 39) {
@@ -86,22 +108,16 @@ for (let tipoEvento of constantes.eventos) {
             } else if (ev.target.id === 'boton__do' || ev.target.id === 'flecha__do') {
                 controles.teclaAbajo = true;
 
-            } else if (ev.target.id === 'boton__rotar') {
+            } else if (ev.target.id === 'boton__rotar' || ev.target.id === 'boton__noDir__rotar') {
                 controles.teclaRotar = true;
-
-            } else if (ev.target.id === 'boton__menu') {
-                if (sonido.musicaFondo.paused) {
-                    sonido.musicaFondo.play()
-                } else {
-                    sonido.musicaFondo.pause()
-                }
             }
         }
     });
 }
 
 // ---------------------------------------------------------------------
-//  funcion INICIALIZADORA
+//  Funcion INICIALIZADORA
+// 
 // ---------------------------------------------------------------------
 window.onload = () => {
 
@@ -143,6 +159,7 @@ window.onload = () => {
 
 // ---------------------------------------------------------------------
 //  Bucle PRINCIPAL
+// 
 // ---------------------------------------------------------------------
 function bucle_principal() {
 
@@ -170,6 +187,7 @@ function bucle_principal() {
 
     // Render Textos ------------------------------------------
     objeto.textos.mostrar_txt();
+    if (objeto.textos2) objeto.textos2.mostrar_txt();
 
     // Check levelUp ------------------------------------------
     check_levelUp(objeto.scores.lineas);

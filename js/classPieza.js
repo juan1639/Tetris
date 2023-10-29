@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------
 //  Clase Pieza ... ( 7 Piezas: z s l j o i t )
+// 
 // ---------------------------------------------------------------------
 import { 
     constantes,
@@ -12,7 +13,8 @@ import {
 
 import { 
     check_colisiones,
-    dejar_rastro_pieza
+    dejar_rastro_pieza,
+    ir_al_gameOver
 } from "./functions.js";
 
 // ---------------------------------------------------------------------
@@ -122,6 +124,11 @@ export class Pieza {
             const colision = check_colisiones(this.x, this.y, this.idPieza, this.rotacion);
             if (colision) {
                 this.y--;
+
+                if (this.y <= constantes.yInicial) {
+                    ir_al_gameOver();
+                }
+
                 varias.otra_pieza = true;
                 dejar_rastro_pieza(this.x, this.y, this.idPieza, this.rotacion);
             }

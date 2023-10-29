@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------------
 //  CONSTANTES & VARIABLES
+// 
 // ---------------------------------------------------------------------
 const constantes = {
     tileX: 20,
@@ -28,6 +29,7 @@ const objeto = {
     matrizFondo: [],
     pieza: null,
     textos: null,
+    textos2: null,
     scores: null,
 }
 
@@ -41,14 +43,15 @@ const controles = {
 const marcadores = {
     lineas: 0,
     nivel: 1,
-    record: 27
+    record: 27,
 }
 
 const estado = {
     menu_principal: true,
     enJuego: false,
     entreNiveles: false,
-    game_over: false
+    game_over: false,
+    rejugar: false,
 }
 
 const varias = {
