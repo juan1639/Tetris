@@ -112,6 +112,22 @@ for (let tipoEvento of constantes.eventos) {
                 controles.teclaRotar = true;
             }
         }
+
+        if (estado.enJuego && tipoEvento === 'touchstart') {
+            console.log(ev.target.id);
+
+            if (ev.target.id === 'boton__do' || ev.target.id === 'flecha__do') {
+                controles.teclaAbajo = true;
+            }
+        }
+
+        if (estado.enJuego && tipoEvento === 'touchend') {
+            console.log(ev.target.id);
+
+            if (ev.target.id === 'boton__do' || ev.target.id === 'flecha__do') {
+                controles.teclaAbajo = false;
+            }
+        }
     });
 }
 
