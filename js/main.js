@@ -112,22 +112,6 @@ for (let tipoEvento of constantes.eventos) {
                 controles.teclaRotar = true;
             }
         }
-
-        if (estado.enJuego && tipoEvento === 'touchstart') {
-            console.log(ev.target.id);
-
-            if (ev.target.id === 'boton__do' || ev.target.id === 'flecha__do') {
-                controles.teclaAbajo = true;
-            }
-        }
-
-        if (estado.enJuego && tipoEvento === 'touchend') {
-            console.log(ev.target.id);
-
-            if (ev.target.id === 'boton__do' || ev.target.id === 'flecha__do') {
-                controles.teclaAbajo = false;
-            }
-        }
     });
 }
 
@@ -190,7 +174,8 @@ function bucle_principal() {
     }
 
     // Renderiza las piezas -----------------------------------
-    if (objeto.pieza) objeto.pieza.dibuja_pieza();
+    if (objeto.pieza[0]) objeto.pieza[0].dibuja_pieza();
+    if (objeto.pieza[1]) objeto.pieza[1].dibuja();
 
     // Instanciar Nueva Pieza ---------------------------------
     if (varias.otra_pieza) objeto.pieza = instanciar_pieza();

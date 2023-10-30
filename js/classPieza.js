@@ -11,7 +11,8 @@ import {
     estado
 } from "./constants.js";
 
-import { 
+import {
+    draw_canvas,
     check_colisiones,
     dejar_rastro_pieza,
     ir_al_gameOver
@@ -96,7 +97,7 @@ export class Pieza {
             const x = (this.x + relPos[0]) * constantes.tileX;
             const y = (this.y + relPos[1]) * constantes.tileY;
 
-            this.draw_canvas(x, y, ancho, alto);
+            draw_canvas(x, y, ancho, alto, this.coloresPieza);
         }
     }
 
@@ -149,29 +150,5 @@ export class Pieza {
 
             controles.teclaRotar = false;
         }
-    }
-
-    draw_canvas(x, y, ancho, alto) {
-
-        ed.ctx.beginPath();
-        ed.ctx.fillStyle = this.coloresPieza[2];
-        ed.ctx.moveTo(x, y);
-        ed.ctx.lineTo(x + ancho, y + alto);
-        ed.ctx.lineTo(x, y + alto);
-        ed.ctx.lineTo(x, y);
-        ed.ctx.fill();
-        ed.ctx.closePath();
-
-        ed.ctx.beginPath();
-        ed.ctx.fillStyle = this.coloresPieza[0];
-        ed.ctx.moveTo(x, y);
-        ed.ctx.lineTo(x + ancho, y);
-        ed.ctx.lineTo(x + ancho, y + alto);
-        ed.ctx.lineTo(x, y);
-        ed.ctx.fill();
-        ed.ctx.closePath();
-
-        // ed.ctx.fillStyle = this.coloresPieza[0];
-        // ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
     }
 }

@@ -16,6 +16,7 @@ import {
 import { Pieza } from './classPieza.js';
 import { MatrizFondo } from './classMatrizFondo.js';
 import { Textos } from './classTextos.js';
+import { nextPieza } from './classNext.js';
 
 // =============================================================================
 function instanciar_matrizFondo() {
@@ -50,19 +51,55 @@ function instanciar_pieza() {
     
     const x = constantes.xInicial;
     const y = constantes.yInicial;
+    const nx = constantes.xNextInicial;
+    const ny = constantes.yNextInicial;
     const piezas = constantes.piezas;
     const color = colores.colorPiezas2;
 
-    const nro_rnd = Math.floor(Math.random() * piezas.length);
-    // const elegida = piezas[nro_rnd];
+    let nro_rnd = varias.next_pieza;
     const elegida = piezas.charAt(nro_rnd);
     const idPieza = Pieza.plantilla[elegida];
-
     const coloresPieza = color[nro_rnd];
 
+    // ----------------------------------------------------
+    nro_rnd = Math.floor(Math.random() * piezas.length);
+    varias.next_pieza = nro_rnd;
+    const elegidaNext = piezas.charAt(nro_rnd);
+    const idNext = Pieza.plantilla[elegidaNext];
+    const colorNext = color[nro_rnd];
+
+    // Instanciar NextPieza (para ver) --------------------
+    const verNextPieza = new nextPieza(nx, ny, idNext, colorNext);
+
+    // Instanciar Pieza -----------------------------------
     const pieza = new Pieza(x, y, idPieza, coloresPieza);
 
-    return pieza;
+    return [pieza, verNextPieza];
+}
+
+// =============================================================================
+function draw_canvas(x, y, ancho, alto, coloresPieza) {
+
+    ed.ctx.beginPath();
+    ed.ctx.fillStyle = coloresPieza[2];
+    ed.ctx.moveTo(x, y);
+    ed.ctx.lineTo(x + ancho, y + alto);
+    ed.ctx.lineTo(x, y + alto);
+    ed.ctx.lineTo(x, y);
+    ed.ctx.fill();
+    ed.ctx.closePath();
+
+    ed.ctx.beginPath();
+    ed.ctx.fillStyle = coloresPieza[0];
+    ed.ctx.moveTo(x, y);
+    ed.ctx.lineTo(x + ancho, y);
+    ed.ctx.lineTo(x + ancho, y + alto);
+    ed.ctx.lineTo(x, y);
+    ed.ctx.fill();
+    ed.ctx.closePath();
+
+    // ed.ctx.fillStyle = this.coloresPieza[0];
+    // ed.ctx.fillRect(x, y, ancho - 1, alto - 1);
 }
 
 // =============================================================================
@@ -343,6 +380,7 @@ export {
     borraCanvas,
     instanciar_matrizFondo,
     instanciar_pieza,
+    draw_canvas,
     check_colisiones,
     dejar_rastro_pieza,
     actualizar_matrizFondo,

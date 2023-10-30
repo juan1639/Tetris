@@ -9,6 +9,8 @@ const constantes = {
     filas: 20,
     xInicial: 7,
     yInicial: 2,
+    xNextInicial: 11,
+    yNextInicial: 2,
     piezas: 'zsljoit',
     fps: 60,
     gravedad: true,
@@ -27,7 +29,7 @@ const elementosDom = {
 
 const objeto = {
     matrizFondo: [],
-    pieza: null,
+    pieza: [],
     textos: null,
     textos2: null,
     scores: null,
@@ -70,6 +72,7 @@ const varias = {
         250, 230, 215, 200, 180, 160, 150, 130, 120, 110, 100, 100, 100
     ], 
     otra_pieza: false,
+    next_pieza: 4,
 }
 
 const colores = {
