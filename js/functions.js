@@ -132,9 +132,9 @@ function check_levelUp(lineas) {
         const bandera = i[0];
         const lineasLevelUp = i[1];
 
-        if (lineas >= lineasLevelUp && lineas < lineasLevelUp + 4 && bandera === 0) {
+        if (lineas >= lineasLevelUp && lineas < lineasLevelUp + 4 && !bandera) {
 
-            i[0] = 1;
+            i[0] = true;
             estado.enJuego = false;
             estado.entreNiveles = true;
             console.log(estado.enJuego, estado.entreNiveles);
@@ -192,6 +192,14 @@ function resetear_rejugar() {
 
     objeto.scores.lineas = 0;
     objeto.scores.nivel = 1;
+
+    Pieza.incr_dificultad_caePieza();
+
+    varias.bandera = false;
+
+    for (let bandera of varias.bandera_levelUp) {
+        bandera[0] = false;
+    }
 
     const filas = constantes.filas;
     const columnas = constantes.columnas;

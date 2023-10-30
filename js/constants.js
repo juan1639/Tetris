@@ -57,13 +57,13 @@ const estado = {
 const varias = {
     bandera: false,
     bandera_levelUp: [
-        [0, 7], [0, 12], [0, 20],
-        [0, 24], [0, 32], [0, 40],
-        [0, 50], [0, 64], [0, 75],
-        [0, 90], [0, 100], [0, 120],
-        [0, 150], [0, 180], [0, 200],
-        [0, 210], [0, 220], [0, 250],
-        [0, 275], [0, 285], [0, 300]
+        [false, 7], [false, 12], [false, 20],
+        [false, 24], [false, 32], [false, 40],
+        [false, 50], [false, 64], [false, 75],
+        [false, 90], [false, 100], [false, 120],
+        [false, 150], [false, 180], [false, 200],
+        [false, 210], [false, 220], [false, 250],
+        [false, 275], [false, 285], [false, 300]
     ],
     cae_pieza: null,
     dificultad_caer: [200, 1100, 900, 700, 600, 450, 400, 350, 300, 275,
