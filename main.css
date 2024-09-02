@@ -14,7 +14,9 @@ html, body {
 	width: 100%;
 	height: 100%;
 	background-color: rgb(194, 168, 16);
-	display: block;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .contenedor__2do {
@@ -27,11 +29,21 @@ html, body {
 	justify-content: center;
 }
 
-.contenedor__botones {
-	/* border: 2px solid orange; */
-    width: 100%;
-    height: fit-content;
+#canvas {
+	width: 40vw;
+	height: 100vh;
+}
+
+#controles {
 	display: none;
+}
+
+#contenedor__botones {
+	width: 100%;
+	height: fit-content;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
 	background-color: inherit;
 }
 
@@ -46,8 +58,9 @@ BOTONES < CONTROLES & NUEVA PARTIDA >
 	font-weight: 700;
 	text-align: center;
 	cursor: pointer;
-	padding: 5px 25px 7px 25px;
+	padding: 0.8em 1em;
 	outline: none;
+	justify-self: center;
 }
 
 .boton:active {
@@ -63,88 +76,57 @@ BOTONES < CONTROLES & NUEVA PARTIDA >
 }
 
 .controles {
-	height: 60px;
-	color: black;
+	height: fit-content;
+	color: #111;
 	border-radius: 6px;
 	background: linear-gradient(#CCC, #777);
 	font-size: 20px;
 	font-weight: bold;
 	box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
 	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	outline: none;
 }
 
-/* #boton__up {
-	width: 100%;
-	border-radius: 90% 90% 0 0;
-} */
+#boton__le {
+	width: 90%;
+	justify-self: right;
+	border-radius: 50% 6px 6px 50%;
+}
+
+#boton__ri {
+	width: 90%;
+	justify-self: left;
+	border-radius: 6px 50% 50% 6px;
+}
 
 #boton__do {
-	width: 100%;
-	border-radius: 0 0 90% 90%;
+	width: 90%;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	border-radius: 6px 6px 50% 50%;
 }
 
-#boton__le, #boton__ri {
-	width: 100%;
+#boton__rotar {
+	width: 90%;
 }
 
-#boton__menu, #boton__rotar {
-	width: 100%;
-	padding: 5px 5px 7px 5px;
-}
-
-.flecha__direccion {
-	box-sizing: content-box;
-	width: 1px;
-	height: 1px;
-	border: 20px solid;
-}
-
-.arriba {
-	border-color: transparent transparent black transparent;
-	margin: 0 0 7% 0;
-}
-
-.izquierda {
-	border-color: transparent black transparent transparent;
-}
-
-.derecha {
-	border-color: transparent transparent transparent black;
-}
-
-.abajo {
-	border-color: black transparent transparent transparent;
-	margin: 7% 0 0 0;
+#boton__menu {
+	width: 90%;
 }
 
 /*---------------------------------------------------------
 RESPONSIVE
 ---------------------------------------------------------*/
-@media (max-width: 850px) {
+@media (max-width: 580px) {
 
-	.contenedor__botones {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+	#canvas {
+		width: 90vw;
+		height: 100vh;
 	}
 
-	#segundaFila__botones {
-		grid-template-columns: 67% 33%;
-	}
-
-	#boton__noDir__rotar {
-		width: 70%;
-		height: 70%;
-		background: url('./img/icono_rotar.png') no-repeat center center;
-	}
-
-	#boton__noDir__menu {
-		width: 70%;
-		height: 70%;
-		background: url('./img/icono_sonido.png') no-repeat center center;
+	#controles {
+		display: flex;
+		opacity: 0.1;
+		margin-top: -32vh;
 	}
 }
-

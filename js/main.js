@@ -131,7 +131,11 @@ window.onload = () => {
 
     elementosDom.canvas.width = constantes.columnas * constantes.tileX;
     elementosDom.canvas.height = constantes.filas * constantes.tileY;
+    
     elementosDom.canvas.style.border = '1px solid black';
+    
+    // elementosDom.canvas.style.width = '40vw';
+    // elementosDom.canvas.style.height = '100vh';
 
     //elementosDom.icono_rotar.style.backgroundImage = "url('./img/icono_rotar.png')";
 
